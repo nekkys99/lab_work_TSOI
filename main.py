@@ -2,7 +2,8 @@ from PIL import Image
 import numpy as np
 import os
 import sys
-
+import cv2
+from matplotlib import pyplot as plt
 
 def create_populate_window(x, y, window, image_array):
     ax = x
@@ -81,7 +82,15 @@ def main(argv):
     max_window = 4
     window = 1
 
-    filenames = ['gray00.png']
+
+    img = cv2.imread('gray5.png', 0)
+    hist, bins = np.histogram(img.flatten(), 256, [0, 256])
+    plt.hist(img.flatten(), 256, [0, 256], color='r')
+    plt.xlim([0, 256])
+    plt.show()
+
+
+    filenames = ['gray5.png']
     for filename in filenames:
         infile = open(filename, "rb")
         inp_image = Image.open(infile)
@@ -122,6 +131,12 @@ def main(argv):
             print("Output file error:")
 
         infile.close()
+
+    img = cv2.imread('new_adap_gray_gray5.png', 0)
+    hist, bins = np.histogram(img.flatten(), 256, [0, 256])
+    plt.hist(img.flatten(), 256, [0, 256], color='r')
+    plt.xlim([0, 256])
+    plt.show()
 
 
 if __name__ == "__main__":
