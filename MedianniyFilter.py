@@ -32,21 +32,20 @@ def median_filter(data, filter_size):
 
 
 def main(argv):
-
-    img = cv2.imread('gray11.png', 0)
+    img = cv2.imread('gray5.png', 0)
     hist, bins = np.histogram(img.flatten(), 256, [0, 256])
     plt.hist(img.flatten(), 256, [0, 256], color='r')
     plt.xlim([0, 256])
     plt.show()
 
-    img = Image.open("gray11.png").convert("L")
+    img = Image.open("gray5.png").convert("L")
     arr = np.array(img)
-    removed_noise = median_filter(arr, 5)  ## Второй аргумент позволяет настроить сетку для изображения
+    removed_noise = median_filter(arr, 3)  ## Второй аргумент позволяет настроить сетку для изображения
     img = Image.fromarray(removed_noise)
     img.show()
-    img.convert("RGB").save("median_fake1.png")
+    img.convert("RGB").save("median_fake5.png")
 
-    img = cv2.imread('median_fake1.png', 0)
+    img = cv2.imread('median_fake5.png', 0)
     hist, bins = np.histogram(img.flatten(), 256, [0, 256])
     plt.hist(img.flatten(), 256, [0, 256], color='r')
     plt.xlim([0, 256])

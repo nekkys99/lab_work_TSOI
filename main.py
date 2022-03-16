@@ -5,6 +5,7 @@ import sys
 import cv2
 from matplotlib import pyplot as plt
 
+
 def create_populate_window(x, y, window, image_array):
     ax = x
     ay = y
@@ -83,14 +84,14 @@ def main(argv):
     window = 1
 
 
-    img = cv2.imread('gray5.png', 0)
+    img = cv2.imread('gray22.png', 0)
     hist, bins = np.histogram(img.flatten(), 256, [0, 256])
     plt.hist(img.flatten(), 256, [0, 256], color='r')
     plt.xlim([0, 256])
     plt.show()
 
 
-    filenames = ['gray5.png']
+    filenames = ['gray22.png']
     for filename in filenames:
         infile = open(filename, "rb")
         inp_image = Image.open(infile)
@@ -120,7 +121,7 @@ def main(argv):
         # we need filename not the opened file/image so used filename
         file, ext = os.path.splitext(filename)
 
-        outfile = "new_adap_gray_" + file + ext
+        outfile = "new_adap_" + file + ext
         print(outfile)
 
         try:
@@ -132,7 +133,7 @@ def main(argv):
 
         infile.close()
 
-    img = cv2.imread('new_adap_gray_gray5.png', 0)
+    img = cv2.imread('new_adap_gray22.png', 0)
     hist, bins = np.histogram(img.flatten(), 256, [0, 256])
     plt.hist(img.flatten(), 256, [0, 256], color='r')
     plt.xlim([0, 256])
